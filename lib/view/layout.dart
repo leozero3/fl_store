@@ -1,3 +1,4 @@
+import 'package:fl_store/view/carrinho/carrinho_page.dart';
 import 'package:fl_store/view/favoritos/favoritos_page.dart';
 import 'package:fl_store/view/home/home_page.dart';
 import 'package:fl_store/view/login/login_page.dart';
@@ -44,7 +45,7 @@ class Layout {
                       Expanded(
                         child: GestureDetector(
                           child: Text(
-                            'James Baxter',
+                            'Isaac Gonzalez',
                             style: Theme.of(context).textTheme.subtitle1.copyWith(
                               color: Layout.Light(),
                               fontSize: 18,
@@ -56,10 +57,13 @@ class Layout {
                       ),
                       Padding(
                         padding: EdgeInsets.only(right: 30),
-                        child: FaIcon(
-                          FontAwesomeIcons.shoppingBag,
-                          color: Layout.primaryLight(),
-                          size: 24,
+                        child: GestureDetector(
+                          child: FaIcon(
+                            FontAwesomeIcons.shoppingBag,
+                            color: Layout.primaryLight(),
+                            size: 24,
+                          ),
+                          onTap: () => Navigator.of(context).pushNamed(CarrinhoPage.tag),
                         ),
                       ),
                     ],

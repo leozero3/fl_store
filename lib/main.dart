@@ -1,3 +1,4 @@
+import 'package:fl_store/view/carrinho/carrinho_page.dart';
 import 'package:fl_store/view/favoritos/favoritos_page.dart';
 import 'package:fl_store/view/home/home_page.dart';
 import 'package:fl_store/view/layout.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         HomePage.tag: (context) => HomePage(),
         FavoritosPage.tag: (context) => FavoritosPage(),
         PerfilPage.tag: (context) => PerfilPage(),
+        CarrinhoPage.tag: (context) => CarrinhoPage(),
       },
     );
   }
