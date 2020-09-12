@@ -141,9 +141,8 @@ class _RodaCategoriaState extends State<RodaCategoria>
               setState(() {
                 _controller.forward();
               });
-
-
             },
+
             child: Container(
               width: MediaQuery
                   .of(context)

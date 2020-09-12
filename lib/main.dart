@@ -4,6 +4,7 @@ import 'package:fl_store/view/layout.dart';
 import 'package:fl_store/view/login/cadastro_page.dart';
 import 'package:fl_store/view/login/login_page.dart';
 import 'package:fl_store/view/login/login_recuperar.dart';
+import 'package:fl_store/view/perfil/perfil_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
         CadastroPage.tag: (context) => CadastroPage(),
         HomePage.tag: (context) => HomePage(),
         FavoritosPage.tag: (context) => FavoritosPage(),
+        PerfilPage.tag: (context) => PerfilPage(),
       },
     );
   }

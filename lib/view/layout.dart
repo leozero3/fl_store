@@ -1,6 +1,7 @@
 import 'package:fl_store/view/favoritos/favoritos_page.dart';
 import 'package:fl_store/view/home/home_page.dart';
 import 'package:fl_store/view/login/login_page.dart';
+import 'package:fl_store/view/perfil/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -30,20 +31,29 @@ class Layout {
                     children: <Widget>[
                       Padding(
                         padding: EdgeInsets.fromLTRB(30, 20, 10, 20),
-                        child: FaIcon(
-                          FontAwesomeIcons.userCog,
-                          color: Layout.Light(),
-                          size: 24,
+                        child: GestureDetector(
+                          child: FaIcon(
+                            FontAwesomeIcons.userCog,
+                            color: Layout.Light(),
+                            size: 24,
+                          ),
+                          onTap: () => Navigator.of(context).pushNamed(PerfilPage.tag),
                         ),
+
                       ),
                       Expanded(
+                        child: GestureDetector(
                           child: Text(
-                        'Leonardo Gonzalez',
-                        style: Theme.of(context).textTheme.subtitle1.copyWith(
-                            color: Layout.Light(),
-                            fontSize: 18,
-                            fontStyle: FontStyle.italic),
-                      )),
+                            'James Baxter',
+                            style: Theme.of(context).textTheme.subtitle1.copyWith(
+                              color: Layout.Light(),
+                              fontSize: 18,
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                          onTap: () => Navigator.of(context).pushNamed(PerfilPage.tag),
+                        ),
+                      ),
                       Padding(
                         padding: EdgeInsets.only(right: 30),
                         child: FaIcon(
