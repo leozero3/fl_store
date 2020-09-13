@@ -14,6 +14,7 @@ class Layout {
     Widget floatingActionButton,
     int bottomItemSelected,
   }) {
+    ///fundo que retorna para todas as telas
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -73,7 +74,10 @@ class Layout {
                     ],
                   ),
                 ),
+                /// =============================================================================
+                /// tela individual
                 Expanded(child: child)
+                /// =======================================================================
               ],
             ),
           ],
