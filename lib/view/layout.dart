@@ -1,4 +1,5 @@
 import 'package:fl_store/view/carrinho/carrinho_page.dart';
+import 'package:fl_store/view/compras/compras_page.dart';
 import 'package:fl_store/view/favoritos/favoritos_page.dart';
 import 'package:fl_store/view/home/home_page.dart';
 import 'package:fl_store/view/login/login_page.dart';
@@ -38,21 +39,23 @@ class Layout {
                             color: Layout.Light(),
                             size: 24,
                           ),
-                          onTap: () => Navigator.of(context).pushNamed(PerfilPage.tag),
+                          onTap: () =>
+                              Navigator.of(context).pushNamed(PerfilPage.tag),
                         ),
-
                       ),
                       Expanded(
                         child: GestureDetector(
                           child: Text(
                             'Isaac Gonzalez',
-                            style: Theme.of(context).textTheme.subtitle1.copyWith(
-                              color: Layout.Light(),
-                              fontSize: 18,
-                              fontStyle: FontStyle.italic,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.subtitle1.copyWith(
+                                      color: Layout.Light(),
+                                      fontSize: 18,
+                                      fontStyle: FontStyle.italic,
+                                    ),
                           ),
-                          onTap: () => Navigator.of(context).pushNamed(PerfilPage.tag),
+                          onTap: () =>
+                              Navigator.of(context).pushNamed(PerfilPage.tag),
                         ),
                       ),
                       Padding(
@@ -63,7 +66,8 @@ class Layout {
                             color: Layout.primaryLight(),
                             size: 24,
                           ),
-                          onTap: () => Navigator.of(context).pushNamed(CarrinhoPage.tag),
+                          onTap: () =>
+                              Navigator.of(context).pushNamed(CarrinhoPage.tag),
                         ),
                       ),
                     ],
@@ -119,6 +123,9 @@ class Layout {
           switch (i) {
             case 0:
               Navigator.of(context).pushNamed(HomePage.tag);
+              break;
+            case 1:
+              Navigator.of(context).pushNamed(ComprasPage.tag);
               break;
             case 2:
               Navigator.of(context).pushNamed(FavoritosPage.tag);
