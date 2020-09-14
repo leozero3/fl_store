@@ -1,3 +1,4 @@
+import 'package:fl_store/view/compras/compras_detalhe_page.dart';
 import 'package:fl_store/view/layout.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,10 +23,11 @@ class ComprasPage extends StatelessWidget {
               subtitle: Text('Em 15/05/2020 as 20:54 \nEm analise'),
               trailing: IconButton(
                   icon: FaIcon(FontAwesomeIcons.clipboardList),
-                  color: Layout.primary(
-
-                  ),
-                  onPressed: null),
+                  color: Layout.primary(),
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ComprasDetalhePage(123)));
+                  }),
             ),
           );
         });
@@ -39,9 +41,13 @@ class ComprasPage extends StatelessWidget {
               padding: EdgeInsets.only(left: 20),
               child: Text(
                 'Minhas compras',
-                style: Theme.of(context).textTheme.headline6.copyWith(
-                      color: Layout.Light(),
-                    ),
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .headline6
+                    .copyWith(
+                  color: Layout.Light(),
+                ),
               ),
             ),
             Expanded(child: content)
