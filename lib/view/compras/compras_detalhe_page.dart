@@ -1,5 +1,4 @@
 import 'package:fl_store/view/layout.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ComprasDetalhePage extends StatelessWidget {
