@@ -1,4 +1,5 @@
 import 'package:fl_store/view/layout.dart';
+import 'package:fl_store/view/produto/produto_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -153,7 +154,13 @@ class CategoriaPage extends StatelessWidget {
                     SizedBox(width: 10),
                     IconButton(
                       icon: FaIcon(FontAwesomeIcons.angleDoubleRight),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ProdutoPage(),
+                          ),
+                        );
+                      },
                     ),
                     SizedBox(width: 10)
                   ],
