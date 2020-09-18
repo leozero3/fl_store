@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "437327665239",
+    "firebase_url": "https://fl-store.firebaseio.com",
+    "project_id": "fl-store",
+    "storage_bucket": "fl-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:437327665239:android:40afed698e90da6c4e2b12",
+        "android_client_info": {
+          "package_name": "br.com.real.fl_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "437327665239-v0qprjhs59kmal5v9s2hibgg94j1pg71.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyzdIZwt14thSm-dMXlqIpPs0KPrcdCyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "437327665239-v0qprjhs59kmal5v9s2hibgg94j1pg71.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
