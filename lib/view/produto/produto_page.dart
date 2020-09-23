@@ -6,7 +6,7 @@ class ProdutoPage extends StatelessWidget {
   static String tag = '/produto-page';
 
   int currentPic = 0;
-
+//keytool -list -v -keystore "C:\Users\leo\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
   @override
   Widget build(BuildContext context) {
     var sController = ScrollController();
