@@ -53,7 +53,7 @@ class Layout {
                       Expanded(
                         child: GestureDetector(
                           child: Text(
-                            'Isaac Gonzalez',
+                            'Isaac Gonzalez r',
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       color: Layout.Light(),
