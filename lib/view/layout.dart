@@ -17,9 +17,6 @@ class Layout {
     int bottomItemSelected,
   }) {
 
-    UserController user = Provider.of<UserController>(context);
-    print(user.teste);
-
     ///fundo que retorna para todas as telas
     return Scaffold(
       body: SafeArea(

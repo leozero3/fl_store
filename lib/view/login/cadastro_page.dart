@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fl_store/view/home/home_page.dart';
+import 'package:fl_store/controller/user_controller.dart';
 import 'package:fl_store/view/layout.dart';
 import 'package:fl_store/view/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class CadastroPage extends StatelessWidget {
   static String tag = '/cadastroPage';
@@ -16,6 +17,8 @@ class CadastroPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var userController = Provider.of<UserController>(context);
+
     return Scaffold(
       key: _scaffold,
       backgroundColor: Layout.secundary(),
@@ -148,7 +151,29 @@ class CadastroPage extends StatelessWidget {
                             height: 50,
                             width: double.infinity,
                             child: FlatButton(
-                                onPressed: () => criarConta(context),
+                                onPressed: () async {
+                                  if (_form.currentState.validate()) {
+                                    // Ao salvar os dados do formulario ficarao
+                                    // retidos em _data automaticamente
+                                    _form.currentState.save();
+
+                                    String error = await userController.criarContaPorEmailSenha(
+                                      _data['nome'],
+                                      _data['email'],
+                                      _data[_senha],
+                                    );
+                                    if (error != null) {
+                                      _scaffold.currentState.showSnackBar(
+                                        SnackBar(content: Text(error)),
+                                      );
+                                      return;
+                                    }
+                                    //se até aqui nao deu nenhum erro
+                                    //é por que deu tudo certo
+                                    //joga ele para a pagina de login
+                                    Navigator.of(context).pushReplacementNamed(LoginPage.tag);
+                                  }
+                                },
                                 color: Layout.primary(),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(7)),
@@ -161,8 +186,8 @@ class CadastroPage extends StatelessWidget {
                                         color: Layout.Light(),
                                         fontSize: 18,
                                       ),
-                                )),
-                          )
+                                ),),
+                          ),
 
                           ///------------------------------------------------------------------------
                         ],
@@ -188,50 +213,5 @@ class CadastroPage extends StatelessWidget {
     );
   }
 
-  criarConta(BuildContext context) async {
-    if (_form.currentState.validate()) {
-      // Ao salvar os dados do formulario ficarao
-      // retidos em _data automaticamente
-      _form.currentState.save();
-
-      try {
-        // Criamos o usuario diretamente la no firebase
-        var auth = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: _data['email'],
-          password: _data['senha'],
-        );
-
-        var updateInfo = UserUpdateInfo();
-        updateInfo.displayName = _data['nome'];
-
-        // Adicionamos a ele o nome de exibicao
-        await auth.user.updateProfile(updateInfo);
-
-        await auth.user.sendEmailVerification();
-
-        // navega para a proxima pagina
-        // Navigator.of(context).pushReplacementNamed(HomePage.tag);
-      } catch (e) {
-        if (e.code != null) {
-          String msg = 'Erro desconhecido, tente novamente';
-          switch (e.code) {
-            case 'ERROR_WEAK_PASSWORD':
-              msg = 'Senha muito fraca';
-              break;
-            case 'ERROR_INVALID_EMAIL':
-              msg = 'Email inválido';
-              break;
-            case 'ERROR_EMAIL_ALREADY_IN_USE':
-              msg = 'Este email já está em uso';
-              break;
-          }
-
-          _scaffold.currentState.showSnackBar(
-            SnackBar(content: Text(msg)),
-
-          );
-        }
-      }
-    }
-  }
+  criarConta(BuildContext context) async {}
 }
