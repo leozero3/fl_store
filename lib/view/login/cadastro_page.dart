@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_store/controller/user_controller.dart';
+import 'package:fl_store/view/home/home_page.dart';
 import 'package:fl_store/view/layout.dart';
 import 'package:fl_store/view/login/login_page.dart';
 import 'package:flutter/material.dart';
@@ -160,7 +161,7 @@ class CadastroPage extends StatelessWidget {
                                     String error = await userController.criarContaPorEmailSenha(
                                       _data['nome'],
                                       _data['email'],
-                                      _data[_senha],
+                                      _data['senha'],
                                     );
                                     if (error != null) {
                                       _scaffold.currentState.showSnackBar(
@@ -168,10 +169,14 @@ class CadastroPage extends StatelessWidget {
                                       );
                                       return;
                                     }
-                                    //se até aqui nao deu nenhum erro
-                                    //é por que deu tudo certo
-                                    //joga ele para a pagina de login
-                                    Navigator.of(context).pushReplacementNamed(LoginPage.tag);
+
+                                   // Se ate aqui nao deu nenhum erro,
+                                    // eh porque deu tudo certo e o login já esta
+                                    // salvo no UserController.
+                                    // Redireciona para pagina inicial
+                                    
+                                    Navigator.of(context).popUntil((route) => route.isFirst);
+                                    Navigator.of(context).pushReplacementNamed(HomePage.tag);
                                   }
                                 },
                                 color: Layout.primary(),
