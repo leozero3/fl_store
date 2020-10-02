@@ -7,6 +7,7 @@ import 'package:fl_store/view/layout.dart';
 import 'package:fl_store/view/login/cadastro_page.dart';
 import 'package:fl_store/view/login/login_page.dart';
 import 'package:fl_store/view/login/login_recuperar.dart';
+import 'package:fl_store/view/login/splash_page.dart';
 import 'package:fl_store/view/perfil/perfil_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,8 +37,9 @@ class MyApp extends StatelessWidget {
                   color: Layout.Dark(.3),
                   offset: Offset(1, 2)),
             ]))),
-        initialRoute: LoginPage.tag,
+        initialRoute: SplashPage.tag,
         routes: {
+          SplashPage.tag: (context) => SplashPage(),
           LoginPage.tag: (context) => LoginPage(),
           LoginRecuperarPage.tag: (context) => LoginRecuperarPage(),
           CadastroPage.tag: (context) => CadastroPage(),

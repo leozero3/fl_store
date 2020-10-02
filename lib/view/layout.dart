@@ -17,6 +17,8 @@ class Layout {
     int bottomItemSelected,
   }) {
 
+    var user = Provider.of<UserController>(context);
+
     ///fundo que retorna para todas as telas
     return Scaffold(
       body: SafeArea(
@@ -138,7 +140,14 @@ class Layout {
               Navigator.of(context).pushNamed(FavoritosPage.tag);
               break;
             case 3:
-              Navigator.of(context).pushNamed(LoginPage.tag);
+
+              //Desloga usuario
+            user.singOut();
+
+              //Navega para a pagina de login
+              Navigator.of(context).popUntil((route) => route.isFirst);
+
+              Navigator.of(context).popAndPushNamed(LoginPage.tag);
               break;
           }
         },

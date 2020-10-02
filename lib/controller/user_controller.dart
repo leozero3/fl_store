@@ -1,8 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-class UserController {
+enum  UserAuthStatus { waiting, loggedIn, loggedOut}
 
+class UserController {
   FirebaseUser user;
+  UserAuthStatus status = UserAuthStatus.waiting;
+
+  Future<UserAuthStatus>checkIsLoggedIn() async{
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    await setUser(firebaseUser);
+
+    return status;
+  }
+
+  Future setUser(FirebaseUser firebaseUser) async {
+    user = firebaseUser;
+
+    status = UserAuthStatus.loggedOut;
+    if (user != null){
+      status = UserAuthStatus.loggedIn;
+    }
+  }
 
   Future<String> criarContaPorEmailSenha(String nome, String email, String senha) async {
     String msg;
@@ -23,7 +41,7 @@ class UserController {
       await auth.user.sendEmailVerification();
 
       // Atribui ao objeto os dados de login dele
-      user = auth.user;
+      setUser(auth.user);
       //
     } catch (e) {
       msg = 'Erro desconhecido, tente novamente';
@@ -44,10 +62,7 @@ class UserController {
     }
     return msg;
   }
-
-}
-
   void singOut() {
     FirebaseAuth.instance.signOut();
   }
-
+}
