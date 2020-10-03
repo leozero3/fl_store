@@ -21,6 +21,7 @@ class SplashPage extends StatelessWidget {
         //mata todas as rotas anteriores
         Navigator.of(context).popUntil((route) => route.isFirst);
 
+        /// VERIFICA SE O LOGIN EXISTE E SE ESTÁ ATIVO
         if( status == UserAuthStatus.loggedIn){
           Navigator.of(context).popAndPushNamed(HomePage.tag);
         }else{

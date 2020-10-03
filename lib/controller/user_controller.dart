@@ -1,12 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-enum  UserAuthStatus { waiting, loggedIn, loggedOut}
+enum UserAuthStatus { waiting, loggedIn, loggedOut }
 
 class UserController {
   FirebaseUser user;
   UserAuthStatus status = UserAuthStatus.waiting;
 
-  Future<UserAuthStatus>checkIsLoggedIn() async{
+  Future<UserAuthStatus> checkIsLoggedIn() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
     await setUser(firebaseUser);
 
@@ -17,12 +17,52 @@ class UserController {
     user = firebaseUser;
 
     status = UserAuthStatus.loggedOut;
-    if (user != null){
+    if (user != null) {
       status = UserAuthStatus.loggedIn;
     }
   }
 
-  Future<String> criarContaPorEmailSenha(String nome, String email, String senha) async {
+  Future<String> entrarPorEmailSenha({String email, String senha}) async {
+    String msg;
+    try {
+      var auth = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: senha,
+      );
+
+      setUser(auth.user);
+    } catch (e) {
+      msg = 'Erro desconhecido, tente novamente';
+
+      if (e.code != null) {
+        switch (e.code) {
+          case 'ERROR_INVALID_EMAIL':
+            msg = 'Este email é inválido';
+            break;
+          case 'ERROR_WRONG_PASSWORD':
+            msg = 'A senha não está correta';
+            break;
+          case 'ERROR_USER_NOT_FOUND':
+            msg = 'Usuário não encontrado';
+            break;
+          case 'ERROR_USER_DISABLED':
+            msg = 'Usuário não está habilitado a acessar o sistema';
+            break;
+          case 'ERROR_TOO_MANY_REQUESTS':
+            msg = 'Muitas requisições em pouco tempo';
+            break;
+          case 'ERROR_OPERATION_NOT_ALLOWED':
+            msg = 'Isso não é permitido';
+            break;
+        }
+      }
+    }
+
+    return msg;
+  }
+
+  Future<String> criarContaPorEmailSenha(
+      {String nome, String email, String senha}) async {
     String msg;
     try {
       // Criamos o usuario diretamente la no firebase
@@ -62,6 +102,7 @@ class UserController {
     }
     return msg;
   }
+
   void singOut() {
     FirebaseAuth.instance.signOut();
   }

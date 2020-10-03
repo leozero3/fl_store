@@ -159,9 +159,9 @@ class CadastroPage extends StatelessWidget {
                                     _form.currentState.save();
 
                                     String error = await userController.criarContaPorEmailSenha(
-                                      _data['nome'],
-                                      _data['email'],
-                                      _data['senha'],
+                                      nome: _data['nome'],
+                                      email: _data['email'],
+                                      senha: _data['senha'],
                                     );
                                     if (error != null) {
                                       _scaffold.currentState.showSnackBar(
