@@ -103,6 +103,26 @@ class UserController {
     return msg;
   }
 
+  Future<String> recuperarSenhaPorEmail(String email) async {
+    String msg;
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      msg = 'Erro desconhecido, tente novamente';
+
+      if (e.code != null) {
+        switch (e.code) {
+          case 'ERROR_INVALID_EMAIL':
+            msg = 'informe um Email válido';
+            break;
+          case 'ERROR_USER_NOT_FOUND':
+            msg = 'Usuário não encontrado';
+            break;
+        }
+      }
+    }
+  }
+
   void singOut() {
     FirebaseAuth.instance.signOut();
   }
