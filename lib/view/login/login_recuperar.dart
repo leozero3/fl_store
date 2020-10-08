@@ -1,5 +1,4 @@
 import 'package:fl_store/controller/user_controller.dart';
-import 'package:fl_store/view/home/home_page.dart';
 import 'package:fl_store/view/layout.dart';
 import 'package:fl_store/view/login/cadastro_page.dart';
 import 'package:fl_store/view/login/login_page.dart';
@@ -100,7 +99,7 @@ class LoginRecuperarPage extends StatelessWidget {
                                             SnackBar(
                                                 content: Text((error != null)
                                                     ? error
-                                                    : 'Verifique sua nova senha em seu Email')));
+                                                    : 'Verifique sua nova senha em seu Email')))  ;
                                       }
                                     },
                                     color: Layout.primary(),

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_store/controller/user_controller.dart';
 import 'package:fl_store/view/home/home_page.dart';
 import 'package:fl_store/view/layout.dart';

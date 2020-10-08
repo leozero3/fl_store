@@ -17,7 +17,7 @@ class Layout {
     int bottomItemSelected,
   }) {
 
-    var user = Provider.of<UserController>(context);
+    var userController = Provider.of<UserController>(context);
 
     ///fundo que retorna para todas as telas
     return Scaffold(
@@ -52,7 +52,7 @@ class Layout {
                       Expanded(
                         child: GestureDetector(
                           child: Text(
-                            'Isaac Gonzalez r',
+                            userController.user.displayName,
                             style:
                                 Theme.of(context).textTheme.subtitle1.copyWith(
                                       color: Layout.Light(),
@@ -130,19 +130,19 @@ class Layout {
         type: BottomNavigationBarType.fixed,
         onTap: (int i) {
           switch (i) {
-            case 0:
+            case 0:  //inicio
               Navigator.of(context).pushNamed(HomePage.tag);
               break;
-            case 1:
+            case 1: //compras
               Navigator.of(context).pushNamed(ComprasPage.tag);
               break;
-            case 2:
+            case 2: //favoritos
               Navigator.of(context).pushNamed(FavoritosPage.tag);
               break;
-            case 3:
+            case 3: //sair
 
               //Desloga usuario
-            user.singOut();
+              userController.singOut();
 
               //Navega para a pagina de login
               Navigator.of(context).popUntil((route) => route.isFirst);

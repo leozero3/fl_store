@@ -5,10 +5,15 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class ProdutoPage extends StatelessWidget {
   static String tag = '/produto-page';
 
-  int currentPic = 0;
+  final int id;
 
+  ProdutoPage(this.id);
+
+  ///=============================================3232322222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
   @override
   Widget build(BuildContext context) {
+    int currentPic = 0;
+
     var sController = ScrollController();
     var listViewItemWidth = MediaQuery.of(context).size.width - 40;
 
@@ -33,8 +38,7 @@ class ProdutoPage extends StatelessWidget {
                       width: listViewItemWidth,
                       child: ClipRRect(
                         borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25)),
+                            topLeft: Radius.circular(25), topRight: Radius.circular(25)),
                         child: Image.asset(
                           'assets/images/produtos/prod-${i + 1}.jpg',
                           fit: BoxFit.cover,
@@ -145,8 +149,7 @@ class ProdutoPage extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(right: 5),
                       child: Chip(
-                        label: Text('Preto',
-                            style: TextStyle(color: Colors.white)),
+                        label: Text('Preto', style: TextStyle(color: Colors.white)),
                         backgroundColor: Layout.primaryDark(.6),
                       ),
                     ),
@@ -162,17 +165,14 @@ class ProdutoPage extends StatelessWidget {
                 Expanded(
                     child: ListView(
                   children: [
-                    Text('Detalhes',
-                        style: Theme.of(context).textTheme.headline6),
+                    Text('Detalhes', style: Theme.of(context).textTheme.headline6),
                     SizedBox(height: 10),
-                    Text('A população ela precisa da Zona Franca de Manaus, '
-                        'porque na Zona franca de Manaus, '
-                        'não é uma zona de exportação,'
-                        ' é uma zona para o Brasil. '
-                        'Portanto ela tem um objetivo, '
-                        'ela evita o desmatamento, '
-                        'que é altamente lucravito. '
-                        'Derrubar arvores da natureza é muito lucrativo!')
+                    Text(
+                      'A população ela precisa da Zona Franca de Manaus, porque na Zona franca de Manaus,'
+                      'não é uma zona de exportação, é uma zona para o Brasil. '
+                      'Portanto ela tem um objetivo, ela evita o desmatamento, '
+                      'que é altamente lucravito.Derrubar arvores da natureza é muito lucrativo!',
+                    ),
                   ],
                 ))
               ],
@@ -192,10 +192,7 @@ class ProdutoPage extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 'COMPRAR',
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(color: Colors.white),
+                style: Theme.of(context).textTheme.headline6.copyWith(color: Colors.white),
               ),
             ),
           )
