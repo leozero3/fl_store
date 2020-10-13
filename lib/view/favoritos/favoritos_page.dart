@@ -39,6 +39,7 @@ class FavoritosPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int i) {
             var item = snapshot.data.documents[i];
 
+            print(item.data);
             // Busca os dados do produto
             var docId =
                 (item.data['fk_produto'] as DocumentReference).documentID;
