@@ -1,8 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:meta/meta.dart';
+
 class FavoritoModel {
-  String fkProduto;
+
+  DocumentReference docRef;
+
+  ProdutoModel fkProduto;
+
   String uid;  // id do usuario no firebase
+
   bool excluido = false;
 
-  FavoritoModel({this.fkProduto, this.uid, this.excluido});
+  FavoritoModel({@required this.docRef, this.fkProduto, this.uid, this.excluido});
+
+  FavoritoModel.fromJson(this.docRef,  Map<String, dynamic> json);
 
 }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_store/controller/user_controller.dart';
+import 'package:fl_store/model/favorito_model.dart';
 import 'package:fl_store/view/layout.dart';
 import 'package:fl_store/view/produto/produto_page.dart';
 import 'package:flutter/material.dart';
@@ -38,8 +39,13 @@ class FavoritosPage extends StatelessWidget {
           itemCount: snapshot.data.documents.length,
           itemBuilder: (BuildContext context, int i) {
             var item = snapshot.data.documents[i];
-
-            print(item.data);
+            
+            //print(item.data);
+            
+            var favorito = FavoritoModel.fromJson(item.reference, item.data);
+            
+            print(item.data['fk_produto']);
+            
             // Busca os dados do produto
             var docId =
                 (item.data['fk_produto'] as DocumentReference).documentID;
