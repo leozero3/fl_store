@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_store/controller/user_controller.dart';
 import 'package:fl_store/model/favorito_model.dart';
+import 'package:fl_store/model/produto_model.dart';
 import 'package:fl_store/view/layout.dart';
 import 'package:fl_store/view/produto/produto_page.dart';
 import 'package:flutter/material.dart';
@@ -39,12 +40,20 @@ class FavoritosPage extends StatelessWidget {
           itemCount: snapshot.data.documents.length,
           itemBuilder: (BuildContext context, int i) {
             var item = snapshot.data.documents[i];
-            
-            //print(item.data);
-            
-            var favorito = FavoritoModel.fromJson(item.reference, item.data);
-            
-            print(item.data['fk_produto']);
+
+            var prodRef = item.data['fk_produto'] as DocumentReference;
+
+            prodRef.get().then((docSnap) {
+              var produto = ProdutoModel.fromJson(item.data['fk_produto'], docSnap.data);
+
+              var favoritoData = item.data;
+              favoritoData['fk_produto'] = produto;
+
+              var favorito = FavoritoModel.fromJson(item.reference, favoritoData);
+              print(favorito.fkProduto.titulo);
+
+            });
+
             
             // Busca os dados do produto
             var docId =
@@ -78,7 +87,7 @@ class FavoritosPage extends StatelessWidget {
                     if (snpsProd.connectionState == ConnectionState.waiting) {
                       return Center(child: LinearProgressIndicator());
                     }
-                    print(snpsProd.data.data);
+                    //print(snpsProd.data.data);
 
                     return ListTile(
                       contentPadding: EdgeInsets.fromLTRB(10, 0, 10, 0),
