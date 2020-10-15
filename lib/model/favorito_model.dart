@@ -19,4 +19,16 @@ class FavoritoModel implements ModelInterface {
       : uid = json['uid'],
         excluido = json['excluido'],
         fkProduto = (json['fk_produto'] is ProdutoModel) ? json['fk_produto'] : null;
+
+  Map<String, dynamic> toJson() => {
+    'uid': uid,
+    'fk_produto': '',
+    'excluido': excluido,
+  };
+
+  Future<ProdutoModel> loadProduto(DocumentReference itemRef) async {
+    var produto = await itemRef.get();
+
+    fkProduto ;
+  }
 }
