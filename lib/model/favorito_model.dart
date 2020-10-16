@@ -29,6 +29,8 @@ class FavoritoModel implements ModelInterface {
   Future<ProdutoModel> loadProduto(DocumentReference itemRef) async {
     var produto = await itemRef.get();
 
-    fkProduto ;
+    fkProduto = ProdutoModel.fromJson(itemRef, produto.data);
+
+    return fkProduto;
   }
 }

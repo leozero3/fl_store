@@ -9,5 +9,7 @@ abstract class ModelInterface {
   // registro ja foi excluido
   bool excluido = false;
 
+  Map<String, dynamic> toJson();
+
 
 }

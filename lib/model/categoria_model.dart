@@ -13,4 +13,15 @@ class CategoriaModel implements ModelInterface {
   String icone;
 
   CategoriaModel({@required this.docRef, this.excluido, this.nome, this.icone});
+
+  CategoriaModel.fromJson(this.docRef, Map<String, dynamic> json)
+      : nome = json['nome'],
+        excluido = json['excluido'],
+        icone = json['icone'] ;
+
+  Map<String, dynamic> toJson() => {
+    'nome' : nome,
+    'icone' : icone,
+    'excluido' : excluido,
+  };
 }
