@@ -31,16 +31,18 @@ class ProdutoModel implements ModelInterface {
         detalhe = json['detalhe'],
         preco = json['preco'],
         excluido = json['excluido'],
-        fkCategoria = (json['fk_categoria'] is CategoriaModel) ? json['fk_categoria'] : null;
+        fkCategoria = (json['fk_categoria'] is CategoriaModel)
+            ? json['fk_categoria']
+            : null;
 
   Map<String, dynamic> toJson() => {
-    'titulo' : titulo,
-    'chamada' : chamada,
-    'detalhe' : detalhe,
-    'excluido' : excluido,
-    'preco' : preco,
-    'fk_categoria' : fkCategoria,
-  };
+        'titulo': titulo,
+        'chamada': chamada,
+        'detalhe': detalhe,
+        'excluido': excluido,
+        'preco': preco,
+        'fk_categoria': fkCategoria,
+      };
 
   Future<CategoriaModel> loadCategoria(DocumentReference itemRef) async {
     var categoria = await itemRef.get();
@@ -49,4 +51,10 @@ class ProdutoModel implements ModelInterface {
 
     return fkCategoria;
   }
+
+  @override
+  String toString() {
+    return 'produto/${docRef.documentID}';
+  }
+
 }

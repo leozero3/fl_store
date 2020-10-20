@@ -22,7 +22,7 @@ class FavoritoModel implements ModelInterface {
 
   Map<String, dynamic> toJson() => {
     'uid': uid,
-    'fk_produto': '',
+    'fk_produto': fkProduto,
     'excluido': excluido,
   };
 
@@ -32,5 +32,10 @@ class FavoritoModel implements ModelInterface {
     fkProduto = ProdutoModel.fromJson(itemRef, produto.data);
 
     return fkProduto;
+  }
+
+  @override
+  String toString() {
+    return 'favorito/${docRef.documentID}';
   }
 }

@@ -24,4 +24,10 @@ class CategoriaModel implements ModelInterface {
     'icone' : icone,
     'excluido' : excluido,
   };
+
+  @override
+  String toString() {
+    return 'categoria/${docRef.documentID}';
+  }
+
 }
