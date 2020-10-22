@@ -21,6 +21,19 @@ class FavoritosPage extends StatelessWidget {
         .where('excluido', isEqualTo: false)
         .snapshots();
 
+    Firestore.instance
+        .document('/favorito/7wn7tOpD7DgLqyH4VrXD')
+        .get()
+        .then((docSnp) {
+
+          var favorito = FavoritoModel.fromJson(docSnp.reference, docSnp.data);
+
+          favorito.loadProduto(docSnp.data['fk_produto']).then((value) {
+            print(favorito.toJson());
+          });
+
+    });
+
     Widget content = StreamBuilder(
       stream: favoritoSnapshot,
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -41,8 +54,10 @@ class FavoritosPage extends StatelessWidget {
           itemBuilder: (BuildContext context, int i) {
             var favoritoDoc = snapshot.data.documents[i];
 
-            var item = FavoritoModel.fromJson(favoritoDoc.reference, favoritoDoc.data);
+            var item =
+                FavoritoModel.fromJson(favoritoDoc.reference, favoritoDoc.data);
 
+            print(item.toJson());
             return GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
