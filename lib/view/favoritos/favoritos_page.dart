@@ -39,13 +39,9 @@ class FavoritosPage extends StatelessWidget {
           shrinkWrap: true,
           itemCount: snapshot.data.documents.length,
           itemBuilder: (BuildContext context, int i) {
-            var item = snapshot.data.documents[i];
+            var favoritoDoc = snapshot.data.documents[i];
 
-            // Busca os dados do produto
-            var docId =
-                (item.data['fk_produto'] as DocumentReference).documentID;
-
-            var futureProduto = Firestore.instance.document('produto/$docId');
+            var item = FavoritoModel.fromJson(favoritoDoc.reference, favoritoDoc.data);
 
             return GestureDetector(
               onTap: () {
@@ -62,16 +58,21 @@ class FavoritosPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: FutureBuilder(
-                  future: futureProduto.get(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<DocumentSnapshot> snpsProd) {
+                  future: item.loadProduto(favoritoDoc.data['fk_produto']),
+                  builder: (
+                    BuildContext context,
+                    AsyncSnapshot<ProdutoModel> snpsProd,
+                  ) {
                     if (snpsProd.hasError) {
                       return Center(
                         child: Text('erro: ${snpsProd.error}'),
                       );
                     }
                     if (snpsProd.connectionState == ConnectionState.waiting) {
-                      return Center(child: LinearProgressIndicator());
+                      return Center(
+                          child: Padding(
+                              padding: const EdgeInsets.all(25),
+                              child: LinearProgressIndicator()));
                     }
                     //print(snpsProd.data.data);
 
@@ -87,8 +88,8 @@ class FavoritosPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      title: Text(snpsProd.data.data['titulo']),
-                      subtitle: Text(snpsProd.data.data['chamada'].toString()),
+                      title: Text(snpsProd.data.titulo),
+                      subtitle: Text(snpsProd.data.chamada),
                       trailing: IconButton(
                           icon: FaIcon(
                             FontAwesomeIcons.solidHeart,
@@ -96,7 +97,7 @@ class FavoritosPage extends StatelessWidget {
                           ),
                           onPressed: () {
                             // marca o registro como excluido
-                            item.reference.updateData({
+                            item.docRef.updateData({
                               'excluido': true,
                             });
                           }),
