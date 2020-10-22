@@ -13,18 +13,23 @@ class FavoritoModel implements ModelInterface {
   ProdutoModel fkProduto;
   String uid; // id do usuario no firebase
 
-  FavoritoModel({@required this.docRef, this.uid, this.excluido});
+  FavoritoModel({
+    @required this.docRef,
+    this.uid,
+    this.excluido,
+  });
 
   FavoritoModel.fromJson(this.docRef, Map<String, dynamic> json)
       : uid = json['uid'],
         excluido = json['excluido'],
-        fkProduto = (json['fk_produto'] is ProdutoModel) ? json['fk_produto'] : null;
+        fkProduto =
+            (json['fk_produto'] is ProdutoModel) ? json['fk_produto'] : null;
 
   Map<String, dynamic> toJson() => {
-    'uid': uid,
-    'fk_produto': fkProduto,
-    'excluido': excluido,
-  };
+        'uid': uid,
+        'fk_produto': fkProduto,
+        'excluido': excluido,
+      };
 
   Future<ProdutoModel> loadProduto(DocumentReference itemRef) async {
     var produto = await itemRef.get();
