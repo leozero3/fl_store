@@ -27,7 +27,7 @@ class FavoritoModel implements ModelInterface {
 
   Map<String, dynamic> toJson() => {
         'uid': uid,
-        'fk_produto': fkProduto,
+        'fk_produto': fkProduto.docRef ?? '',
         'excluido': excluido,
       };
 

@@ -9,6 +9,7 @@ class CompraModel implements ModelInterface {
   @override
   bool excluido = false;
 
+  int sequence;
   String uid; // Id do usuario no Firebase
   Timestamp data;
   String status;
@@ -28,6 +29,7 @@ class CompraModel implements ModelInterface {
 
   CompraModel({
     @required this.docRef,
+    this.sequence,
     this.excluido,
     this.uid,
     this.data,
@@ -46,13 +48,14 @@ class CompraModel implements ModelInterface {
   });
 
   CompraModel.fromJson(this.docRef, Map<String, dynamic> json)
-      : uid = json['uid'],
+      : sequence = json['sequence'],
+        uid = json['uid'],
         data = json['data'],
         status = json['status'],
         tipoFrete = json['tipo_frete'],
-        valorFrete = json['valor_frete'],
-        valorItens = json['valor_itens'],
-        valorTotal = json['valor_total'],
+        valorFrete = double.parse(json['valor_frete'].toString()),
+        valorItens = double.parse(json['valor_itens'].toString()),
+        valorTotal = double.parse(json['valor_total'].toString()),
         cep = json['cep'],
         rua = json['rua'],
         numero = json['numero'],
@@ -64,6 +67,7 @@ class CompraModel implements ModelInterface {
 
   @override
   Map<String, dynamic> toJson() => {
+    'sequence' : sequence,
     'uid': uid,
     'data': data,
     'status': status,

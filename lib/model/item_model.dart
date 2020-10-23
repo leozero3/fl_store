@@ -38,9 +38,9 @@ class ItemModel implements ModelInterface {
   ItemModel.fromJson(Map<String, dynamic> json)
       : titulo = json['titulo'],
         quantidade = json['quantidade'],
-        preco = json['preco'],
-        valorUnitario = json['valor_unitario'],
-        valorTotal = json['valor_total'],
+        preco = double.parse(json['preco'].toString()),
+        valorUnitario = double.parse(json['valor_unitario'].toString()),
+        valorTotal = double.parse(json['valor_total'].toString()),
         fkCompra =
         (json['fk_compra'] is CompraModel) ? json['fk_compra'] : null,
         fkProduto =

@@ -29,7 +29,7 @@ class ProdutoModel implements ModelInterface {
       : titulo = json['titulo'],
         chamada = json['chamada'],
         detalhe = json['detalhe'],
-        preco = json['preco'],
+        preco = double.parse(json['preco'].toString()),
         excluido = json['excluido'],
         fkCategoria = (json['fk_categoria'] is CategoriaModel)
             ? json['fk_categoria']
