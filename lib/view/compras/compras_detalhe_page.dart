@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fl_store/view/layout.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ComprasDetalhePage extends StatelessWidget {
   static String tag = '/compra-detalhe-page';
-  final int id;
+
+  final DocumentReference id;
 
   ComprasDetalhePage(this.id);
 
@@ -57,11 +60,12 @@ class ComprasDetalhePage extends StatelessWidget {
     return Layout.render(
         context,
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.only(left: 0),
+              padding: EdgeInsets.only(left: 20),
               child: Text(
-                'Compra #$id',
+                'Compra #',
                 style: Theme.of(context)
                     .textTheme
                     .headline6

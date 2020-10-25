@@ -9,6 +9,8 @@ import 'package:fl_store/functions.dart';
 class ComprasPage extends StatelessWidget {
   static String tag = '/compras-page';
 
+
+
   @override
   Widget build(BuildContext context) {
     var content = StreamBuilder(
@@ -41,13 +43,13 @@ class ComprasPage extends StatelessWidget {
                   child: ListTile(
                     isThreeLine: true,
                     title: Text('#${item.sequence} - ${item.valorTotal.toBRL()}'),
-                    subtitle: Text('${item.data.toDate()} \n${item.status}'),
+                    subtitle: Text('${item.data.toFormat()} \n${item.status}'),
                     trailing: IconButton(
                         icon: FaIcon(FontAwesomeIcons.clipboardList),
                         color: Layout.primary(),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ComprasDetalhePage(123)));
+                              builder: (context) => ComprasDetalhePage(item.docRef)));
                         }),
                   ),
                 );
